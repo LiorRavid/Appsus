@@ -1,0 +1,68 @@
+@import url("./parts/helpers.css");
+@font-face {
+    font-family: fa;
+    src: url(./../font/fa-solid-900.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.main-app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+/* header */
+
+.app-header {
+    width: 100%;
+    position: fixed;
+    height: 5vh;
+    background-color: rgb(165, 165, 165);
+}
+
+.app-header-section {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100%;
+}
+
+.btn-main-menu {
+    font-family: fa;
+}
+
+.btn-main-menu::before {
+    content: '\f00a';
+}
+
+nav {
+    justify-content: flex-end;
+    display: flex;
+}
+
+
+/* main content */
+
+
+/* footer */
+
+.app-footer {
+    height: 5vh;
+    background-color: rgb(165, 165, 165);
+}
