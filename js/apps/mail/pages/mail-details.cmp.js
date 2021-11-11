@@ -49,7 +49,6 @@ export default {
         };
     },
     created() {
-        console.log('hello');
         const mailId = this.$route.params.mailId
         mailService.getById(mailId)
                     .then(mail => this.mail = mail); 

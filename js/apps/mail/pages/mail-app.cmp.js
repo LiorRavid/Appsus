@@ -11,10 +11,10 @@ export default {
             <mail-filter @filtered="setFilter"/>  
             <div class="mail-layout">
                 <div class="side-bar">
-                    <div class="compose">
+                    <router-link class="compose" to="/mail/new">
                         <div class="btn-compose"></div>
                         &nbsp;Compose
-                    </div>
+                    </router-link>
                     <div class="folders">
                         <ul class="folder-list">
                             <li>Inbox</li>
