@@ -9,18 +9,42 @@ export const noteService = {
     save,
     getById,
     updateNoteTodo,
+    updateNote,
+    updateNoteStyle,
+    duplicateNote,
 };
+
+function duplicateNote(note) {
+    let newNote = note;
+    newNote.id = utilService.makeId();
+    newNote.isPinned = false;
+    return save(newNote);
+}
 
 function updateNoteTodo(note, todoIdx, value) {
     note.info.todos[todoIdx].isChecked = value;
     storageService.put(KEY, note);
 }
 
+function updateNote(noteId, property, value) {
+    return getById(noteId).then(note => {
+        note[property] = value;
+        return storageService.put(KEY, note);
+    });
+}
+
+function updateNoteStyle(noteId, property, value) {
+    return getById(noteId).then(note => {
+        note.style[property] = value;
+        return storageService.put(KEY, note);
+    });
+}
+
 function addNote(type, value) {
     let note = _createBasicNote(type);
     if (type === 'note-txt') note.info['txt'] = value;
-    if (type === 'note-video' || type === 'note-image') note.info['url'] = value;
-    if (type === 'note-todos') note.info['todos'] = value;
+    else if (type === 'note-video' || type === 'note-img') note.info['url'] = value;
+    else if (type === 'note-todos') note.info['todos'] = value;
     return save(note);
 }
 
@@ -93,6 +117,17 @@ function _starterNotes() {
                 todos: [{ txt: 'minesweeper', isChecked: false }, { txt: 'memegen', isChecked: false }, { txt: 'appsus', isChecked: false }],
             },
             style: { 'background-color': 'pink' },
+            label: [],
+        },
+        {
+            id: utilService.makeId(),
+            type: 'note-img',
+            isPinned: false,
+            info: {
+                title: 'me while sprint 3',
+                url: 'https://media2.giphy.com/media/unQ3IJU2RG7DO/giphy.gif'
+            },
+            style: { 'background-color': 'yellow' },
             label: [],
         }
     ];

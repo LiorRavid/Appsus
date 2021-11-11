@@ -6,7 +6,7 @@ import { noteService } from "../services/note-service.js";
 export default {
     props: ['note'],
     template: `
-        <div class="note-preview">
+        <div class="note-preview" >
             <component :note="note"  :is="noteType">
             </component>
         </div>
