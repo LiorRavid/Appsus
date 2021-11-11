@@ -6,9 +6,4 @@ export default {
             <img :src="note.info.url" alt="">
         </div>
     `,
-    data() {
-
-    },
-
-
 };

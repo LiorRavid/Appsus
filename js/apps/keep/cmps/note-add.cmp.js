@@ -1,15 +1,15 @@
 import { noteService } from '../services/note-service.js';
 export default {
     template: `
-        <section class="note-add">
+        <section class="note-add flex justify-center">
             <div>
                 <form @submit.prevent="onAddNote($event,chosenNoteType)">
                     <input type="text" v-model="value" :placeHolder="placeHolder">
                 </form>
-                    <button @click="onChooseNoteType($event,'Whats on your mind?','note-txt') ">text</button>
-                    <button @click="onChooseNoteType($event,'Enter video URL...','note-video')">video</button>
-                    <button @click="onChooseNoteType($event,'Enter image URL...','note-img')">image</button>
-                    <button @click="onChooseNoteType($event,'Enter comma separeted list','note-todos')">todo</button>
+                    <button class="btn-note-txt btn-note" @click="onChooseNoteType($event,'Whats on your mind?','note-txt') "></button>
+                    <button class="btn-note-video btn-note" @click="onChooseNoteType($event,'Enter video URL...','note-video')"></button>
+                    <button class="btn-note-img btn-note" @click="onChooseNoteType($event,'Enter image URL...','note-img')"></button>
+                    <button class="btn-note-todos btn-note" @click="onChooseNoteType($event,'Enter comma separeted list','note-todos')"></button>
              </div>   
         </section>
     `,
@@ -46,7 +46,11 @@ export default {
                 this.value = this.makeTodo;
                 console.log('', this.value);
             }
-            noteService.addNote(type, this.value).then(note => this.$emit('addedNote'));
+            noteService.addNote(type, this.value).then(note => {
+                this.$emit('addedNote');
+                this.value = '';
+
+            });
         },
     }
 }

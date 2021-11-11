@@ -8,7 +8,7 @@ export default {
             <h2>keep</h2>
             <div>
                <note-add @addedNote="loadNotes"></note-add>
-               <note-list @remove="removeNote" :notes="notesToShow"></note-list>
+               <note-list @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="notesToShow" @copy="copyNote"></note-list>
              </div>   
             
         </section>
@@ -23,7 +23,7 @@ export default {
     },
     computed: {
         notesToShow() {
-            console.log('hi')
+            // console.log('hi')
             return this.notes;
         }
     },
@@ -31,6 +31,13 @@ export default {
         loadNotes() {
             noteService.query()
                 .then(notes => this.notes = notes);
+        },
+        updateColor(id, color) {
+            noteService.updateNoteStyle(id, 'background-color', color)
+                .then(() => {
+                    console.log('colorChanged');
+                    this.loadNotes();
+                });
         },
         removeNote(id) {
             noteService.remove(id)
@@ -50,6 +57,20 @@ export default {
                     //     type: 'error'
                     // };
                     // eventBus.$emit('showMsg', msg);
+                });
+        },
+        updatePinned(isPinned, id) {
+            noteService.updateNote(id, 'isPinned', isPinned)
+                .then(() => {
+                    console.log('yay', isPinned);
+                    this.loadNotes();
+                })
+        },
+        copyNote(note) {
+            noteService.duplicateNote(note)
+                .then(note => {
+                    console.log('new', note)
+                    this.loadNotes();
                 });
         },
     },
