@@ -88,13 +88,13 @@ function getById(noteId) {
 function _starterNotes() {
     return [{
             id: utilService.makeId(),
-            type: 'note-video',
-            isPinned: false,
+            type: 'note-img',
+            isPinned: true,
             info: {
-                title: 'Vue explained',
-                url: 'https://www.youtube.com/watch?v=nhBVL41-_Cw'
+                title: '',
+                url: 'https://i.pinimg.com/originals/4f/b5/88/4fb5886838c0492fc4b0cee3de87b648.jpg'
             },
-            style: { 'background-color': 'yellow' },
+            style: { 'background-color': '#fff475' },
             label: [],
         },
         {
@@ -102,10 +102,38 @@ function _starterNotes() {
             type: 'note-txt',
             isPinned: false,
             info: {
-                title: 'sprint3',
+                title: '',
+                txt: `
+    if (brain! = empty) {
+        keepCoding();
+    } else {
+        drinkCoffee();
+    }
+                `
+            },
+            style: { 'background-color': '#cbf0f8' },
+            label: [],
+        },
+        {
+            id: utilService.makeId(),
+            type: 'note-video',
+            isPinned: false,
+            info: {
+                title: 'Vue explained',
+                url: 'https://www.youtube.com/watch?v=nhBVL41-_Cw'
+            },
+            style: { 'background-color': '#e6c9a8' },
+            label: [],
+        },
+        {
+            id: utilService.makeId(),
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                title: 'Sprint 3',
                 txt: 'omg'
             },
-            style: { 'background-color': 'blue' },
+            style: { 'background-color': '#e8eaed' },
             label: [],
         },
         {
@@ -113,10 +141,10 @@ function _starterNotes() {
             type: 'note-todos',
             isPinned: false,
             info: {
-                title: 'sprint list so far',
-                todos: [{ txt: 'minesweeper', isChecked: false }, { txt: 'memegen', isChecked: false }, { txt: 'appsus', isChecked: false }],
+                title: 'Sprint list so far',
+                todos: [{ txt: 'minesweeper', isChecked: true }, { txt: 'memegen', isChecked: true }, { txt: 'appsus', isChecked: false }],
             },
-            style: { 'background-color': 'pink' },
+            style: { 'background-color': '#ccff90' },
             label: [],
         },
         {
@@ -124,10 +152,10 @@ function _starterNotes() {
             type: 'note-img',
             isPinned: false,
             info: {
-                title: 'me while sprint 3',
+                title: 'Me while sprint 3',
                 url: 'https://media2.giphy.com/media/unQ3IJU2RG7DO/giphy.gif'
             },
-            style: { 'background-color': 'yellow' },
+            style: { 'background-color': '#aecbfa' },
             label: [],
         }
     ];

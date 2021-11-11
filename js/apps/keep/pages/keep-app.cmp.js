@@ -8,14 +8,17 @@ export default {
             <h2>keep</h2>
             <div>
                <note-add @addedNote="loadNotes"></note-add>
-               <note-list @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="notesToShow" @copy="copyNote"></note-list>
+               <note-list @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="pinnedNotesToShow" :notePinnedSuccess="notePinnedSuccess" @copy="copyNote"></note-list>
+               <note-list @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="notesToShow"  @copy="copyNote"></note-list>
              </div>   
             
         </section>
     `,
     data() {
         return {
-            notes: null
+            notes: null,
+            pinnedNotes: [],
+            notePinnedSuccess: null,
         }
     },
     created() {
@@ -25,12 +28,19 @@ export default {
         notesToShow() {
             // console.log('hi')
             return this.notes;
+        },
+        pinnedNotesToShow() {
+            return this.pinnedNotes
         }
     },
     methods: {
+
         loadNotes() {
             noteService.query()
-                .then(notes => this.notes = notes);
+                .then(notes => {
+                    this.notes = notes
+                    this.gatherPinnedNotes();
+                });
         },
         updateColor(id, color) {
             noteService.updateNoteStyle(id, 'background-color', color)
@@ -63,7 +73,9 @@ export default {
             noteService.updateNote(id, 'isPinned', isPinned)
                 .then(() => {
                     console.log('yay', isPinned);
+                    if (isPinned) this.notePinnedSuccess = id;
                     this.loadNotes();
+
                 })
         },
         copyNote(note) {
@@ -72,6 +84,13 @@ export default {
                     console.log('new', note)
                     this.loadNotes();
                 });
+        },
+        gatherPinnedNotes() {
+            const pinnedArr = this.notes.filter(note => {
+                return (note.isPinned)
+            });
+            this.pinnedNotes = pinnedArr;
+            console.log('', this.pinnedNotes);
         },
     },
 

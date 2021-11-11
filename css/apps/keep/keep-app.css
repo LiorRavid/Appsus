@@ -1,3 +1,11 @@
+.keep-app {
+    font-family: lato;
+}
+
+.keep-app pre {
+    font-family: lato;
+}
+
 .btn-note {
     border: none;
     font-size: 17px;
@@ -76,6 +84,7 @@
 }
 
 .color-dropdown div {
+    overflow: hidden;
     display: inline-block;
     border-radius: 2rem;
     /* border: 1px solid black; */
@@ -148,15 +157,15 @@
     border: none;
 }
 
-.note-list {
+.note-list-ul {
     padding-top: 20px;
     column-gap: 15px;
     column-width: 300px;
     break-inside: avoid;
-    overflow: hidden
+    overflow: hidden;
 }
 
-.note-list>li {
+.note-list-ul>li {
     break-inside: avoid;
     display: inline-block;
     border: 0.8px solid lightgray;

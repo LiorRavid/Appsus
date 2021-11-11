@@ -2,6 +2,11 @@
 @import url("./apps/mail/mail-app.css");
 @import url("./apps/keep/keep-app.css");
 @font-face {
+    font-family: lato;
+    src: url(./../font/Lato-Regular.ttf);
+}
+
+@font-face {
     font-family: fa;
     src: url(./../font/fa-solid-900.ttf);
 }
@@ -63,8 +68,26 @@ a {
 }
 
 nav {
+    background-color: rgb(228, 228, 228);
     float: right;
+    padding: 10px;
 }
+
+nav ul {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav li {}
+
+.menu-link-book {}
+
+.menu-link-keep {}
+
+.menu-link-mail {}
+
+.menu-link-about {}
 
 
 /* main content */
