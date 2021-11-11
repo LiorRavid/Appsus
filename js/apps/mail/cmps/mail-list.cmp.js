@@ -7,7 +7,7 @@ export default {
        <ul class="mail-list">
             <li v-for="mail in mails" :key="mail.id" class="mail-preview-container" >
                 <div @click="selected(mail)">
-                    <mail-preview :class="{grey: mail.id===selectedId}" :mail="mail"  @removePreview = "remove" />
+                    <mail-preview :class="{grey: mail.id===selectedId}" :mail="mail"  @removePreview = "remove" @readUnread = "unRead" />
                     <long-preview v-show = "mail.id===selectedId" :mail = "mail" @removeLongPreview = "remove"/> 
                 </div>
             </li>
@@ -30,6 +30,9 @@ export default {
         remove(mailId) {
             this.$emit('remove', mailId);
         },
+        unRead(mail){
+            this.$emit('unread', mail)
+        }
     },
     computed: {
         changeColor(){

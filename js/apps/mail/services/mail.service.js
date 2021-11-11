@@ -48,7 +48,7 @@ function _createMails(){
         },
         {
         id: 'e102',
-        subject: 'Miss you!',
+        subject: 'YOU ARE!',
         body: 'Would love to catch up sometimes',
         isRead: false,
         sentAt : 1551133930594,
@@ -57,7 +57,7 @@ function _createMails(){
         },
         {
         id: 'e103',
-        subject: 'Miss you!',
+        subject: 'FUN!',
         body: 'Would love to catch up sometimes',
         isRead: false,
         sentAt : 1551133930594,

@@ -8,15 +8,15 @@ export default {
                     <h3>{{mail.subject}}</h3>
                 </div>
                 <div class = 'btns-long-preview'>
-                    <div class="btn-full-mail" @click.stop="fullMail(mail.id)"></div>
+                    <router-link  :to = "'/mail/' + mail.id" class="btn-full-mail" ></router-link>
                     <div class="btn-trash" @click.stop="removeLongPreview(mail.id)"></div>
                 </div>
             </header>
-            <div class="sub-header">
+            <div class="sub-header-preview">
                 <h4>{{nameOfMailSend}}</h4>
                 <p><{{mail.from}}></p>
             </div>
-            <p>{{descriptionText}}</p>
+            <p class = "preview-txt">{{descriptionText}}</p>
         </section>`,
 
     data() {
@@ -28,9 +28,9 @@ export default {
         removeLongPreview(mailId) {
             this.$emit('removeLongPreview', mailId);
         },
-        fullMail(mailId){
-            this.$emit('fullMail', mailId);
-        },
+        // fullMail(mailId){
+        //     this.$emit('fullMail', mailId);
+        // },
     },
     computed: {
         descriptionText() {

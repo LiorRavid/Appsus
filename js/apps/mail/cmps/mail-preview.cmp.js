@@ -7,7 +7,7 @@ export default {
         <p :class="bold"> {{mail.subject}}</p> 
         <p v-show="!isHover" :class="bold"> {{mailDate}}</p>
         <div class = "btns-mail-preview" v-show="isHover">
-            <div :class="readUnread" @click.stop = "unread"></div>
+            <div :class="readUnread" @click.stop = "unread(mail)"></div>
             <div class="btn-trash" @click.stop="removePreview(mail.id)"></div>
         </div> 
     </div>`,
@@ -15,7 +15,7 @@ export default {
     data() {
         return {
             isHover:false,
-            isRead:false,
+            isRead: this.mail.isRead,
         }
     },
     methods: {
@@ -28,8 +28,10 @@ export default {
         removePreview(mailId) {
             this.$emit('removePreview', mailId);
         },
-        unread(){
-        return this.isRead = !this.isRead
+        unread(mail){
+            this.$emit('readUnread', mail)
+            // if(mail.isRead)return this.isRead=mail.isRead
+            return this.isRead = !this.isRead
         },
 
     },

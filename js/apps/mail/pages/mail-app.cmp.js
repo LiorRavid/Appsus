@@ -1,26 +1,38 @@
 import { mailService } from '../services/mail.service.js';
 // import { eventBus } from '../services/event-bus-service.js';
 import mailList from '../cmps/mail-list.cmp.js';
-// import mailFilter from '../cmps/mail-filter.js';
+import mailFilter from './../cmps/mail-filter.cmp.js';
 // import mailDetails from './mail-details.js';
 
 
 export default {
-    template: `
-        <!-- <mail-filter @filtered="setFilter"/>     -->
+    template: `  
         <section class="flex-grow flex-grow">
-            <!-- <div class="mail-layout"> -->
-                <!-- <div class="side-bar"></div> -->
-                <mail-list :mails="mails" @remove = "removeMail "></mail-list> 
+            <mail-filter @filtered="setFilter"/>  
+            <div class="mail-layout">
+                <div class="side-bar">
+                    <div class="compose">
+                        <div class="btn-compose"></div>
+                        &nbsp;Compose
+                    </div>
+                    <div class="folders">
+                        <ul class="folder-list">
+                            <li>Inbox</li>
+                            <li>Starred</li>
+                            <li>Sent Mails</li>
+                            <li>Drafts</li>
+                        </ul>
+                    </div>
+                </div>
+                <mail-list :mails="mailsToShow" @remove = "removeMail" @selected = "selectMail" @unread = "isReaddMail"></mail-list> 
          <!-- :mails="mailsToShow" -->
-        <!-- <mail-details v-if="selectedMail" :book="selectedMail" @close="closeMail"/> -->
-            <!-- </div> -->
+            </div>
         </section>`,
     data() {
         return {
             mails: null,
             filterBy: null,
-            // selectedMail: null,
+            selectedMail: null,
         }
     },
     created() {
@@ -31,9 +43,9 @@ export default {
             mailService.query()
                 .then(mails => this.mails = mails);
         },
-        // selectMails(mail) {
-        //     this.selectedMail = mail
-        // },
+        selectMail(mail) {
+            this.selectedMail = mail
+        },
         // closeDetails() {
         //     this.selectedMail = null;
         // },
@@ -41,27 +53,33 @@ export default {
             mailService.remove(id)
                 .then(this.loadMails);
         },
+        isReaddMail(mail){
+            mail.isRead = !mail.isRead
+            mailService.save(mail)
+                .then(this.loadMails)
+
+        },
         setFilter(filterBy) {
             this.filterBy = filterBy
         },
     },
     computed: {
-        // booksToShow() {
-        //     if (!this.filterBy) return this.books;
-
-        //     const searchStr = this.filterBy.title.toLowerCase();
-        //     const minPrice = (this.filterBy.minPrice) ? this.filterBy.minPrice : 0
-        //     const maxPrice = (this.filterBy.maxPrice) ? this.filterBy.maxPrice : Infinity
-
-        //     const filterBook = this.books.filter(book => {
-        //         return book.title.toLowerCase().includes(searchStr) && book.listPrice.amount >= minPrice && book.listPrice.amount <= maxPrice
-        //     })
-        //     return filterBook;
-        // }
+        mailsToShow() {
+            if (!this.filterBy) return this.mails;
+            console.log('this.filterBy.isRead',this.filterBy.isRead);
+            const searchStr = this.filterBy.search.toLowerCase()
+            var isRead = (this.filterBy.isRead==='Read')?true : false
+            const filterMail = this.mails.filter(mail => {
+                if(this.filterBy.isRead==='All'){
+                    return ((mail.subject.toLowerCase().includes(searchStr) || mail.body.toLowerCase().includes(searchStr) || mail.from.toLowerCase().includes(searchStr)))
+                }else return ((mail.subject.toLowerCase().includes(searchStr) || mail.body.toLowerCase().includes(searchStr) || mail.from.toLowerCase().includes(searchStr)) && mail.isRead === isRead)
+            })
+            return filterMail;
+        }
     },
     components: {
         mailList,
-        // mailFilter,
+        mailFilter,
         // mailDetails,
     }
 }
