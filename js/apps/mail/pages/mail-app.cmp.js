@@ -9,9 +9,12 @@ export default {
     template: `
         <!-- <mail-filter @filtered="setFilter"/>     -->
         <section class="flex-grow flex-grow">
-        <mail-list :mails="mails" @remove = "removeMail"></mail-list> 
-        <!-- :mails="mailsToShow" -->
+            <!-- <div class="mail-layout"> -->
+                <!-- <div class="side-bar"></div> -->
+                <mail-list :mails="mails" @remove = "removeMail "></mail-list> 
+         <!-- :mails="mailsToShow" -->
         <!-- <mail-details v-if="selectedMail" :book="selectedMail" @close="closeMail"/> -->
+            <!-- </div> -->
         </section>`,
     data() {
         return {

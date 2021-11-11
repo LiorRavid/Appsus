@@ -2,13 +2,13 @@
 export default {
     props: ['mail'],
     template: `
-    <div class="mail-preview" :class="shadow"  @click="clicked" @mouseover="mouseover" @mouseleave="mouseleave">
+    <div class="mail-preview" :class="shadow" @mouseover="mouseover" @mouseleave="mouseleave">
         <p :class="bold"> {{nameOfMailSend}} </p>
         <p :class="bold"> {{mail.subject}}</p> 
         <p v-show="!isHover" :class="bold"> {{mailDate}}</p>
         <div class = "btns-mail-preview" v-show="isHover">
-            <div :class="readUnread" @click = "unread"></div>
-            <div class="btn-trash" @click="removePreview(mail.id)"></div>
+            <div :class="readUnread" @click.stop = "unread"></div>
+            <div class="btn-trash" @click.stop="removePreview(mail.id)"></div>
         </div> 
     </div>`,
 
@@ -16,7 +16,6 @@ export default {
         return {
             isHover:false,
             isRead:false,
-            isClicked: false
         }
     },
     methods: {
@@ -32,9 +31,7 @@ export default {
         unread(){
         return this.isRead = !this.isRead
         },
-        clicked(){
-            return this.isClicked = !this.isClicked 
-        }
+
     },
     computed: {
         nameOfMailSend(){

@@ -2,14 +2,14 @@
 export default {
     props: ['mail'],
     template: `
-        <section v-show = "isClicked">
+        <section class = "long-preview">
             <header class = "mail-header">
                 <div class = "h3">
-                    <h3></h3>
+                    <h3>{{mail.subject}}</h3>
                 </div>
                 <div class = 'btns-long-preview'>
-                    <div class="btn-full-mail" @click="fullMail(mail.id)"></div>
-                    <div class="btn-trash" @click="removePreview(mail.id)"></div>
+                    <div class="btn-full-mail" @click.stop="fullMail(mail.id)"></div>
+                    <div class="btn-trash" @click.stop="removeLongPreview(mail.id)"></div>
                 </div>
             </header>
             <div class="sub-header">
@@ -17,8 +17,6 @@ export default {
                 <p><{{mail.from}}></p>
             </div>
             <p>{{descriptionText}}</p>
-            <p>Description: {{descriptionText}}</p>
-            <button v-if="!isFullLength" @click="isReadMore = true">Read More</button>
         </section>`,
 
     data() {
@@ -27,18 +25,17 @@ export default {
         }
     },
     methods:{
-        removePreview(mailId) {
-            this.$emit('removePreview', mailId);
+        removeLongPreview(mailId) {
+            this.$emit('removeLongPreview', mailId);
+        },
+        fullMail(mailId){
+            this.$emit('fullMail', mailId);
         },
     },
     computed: {
         descriptionText() {
             var text = this.mail.body
-            if (text.length > 100 && !this.isReadMore) return text.slice(0,100) + "..." 
-            else return text
-        },
-        isFullLength() {
-            return this.description.length < 100
+            return text.slice(0,5) + "..." 
         },
         nameOfMailSend(){
             const name = this.mail.from.split('@')

@@ -34,36 +34,39 @@ function getById(mailId) {
 // }
 
 function _createMails(){
-  const mails = [
-    {
-    id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt : 1551133930594,
-    to: 'momo@momo.com',
-    from: 'user@appsus.com'
-    },
-    {
-    id: 'e102',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt : 1551133930594,
-    to: 'momo@momo.com',
-    from: 'Alon@appsus.com'
-    },
-    {
-    id: 'e103',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt : 1551133930594,
-    to: 'momo@momo.com',
-    from: 'Beni@appsus.com'
-    },
-  ]
-  utilService.saveToStorage(MAIL_KEY, mails);
+  let mails = utilService.loadFromStorage(MAIL_KEY);
+    if (!mails || !mails.length) {
+      mails = [
+        {
+        id: 'e101',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: false,
+        sentAt : 1551133930594,
+        to: 'momo@momo.com',
+        from: 'user@appsus.com'
+        },
+        {
+        id: 'e102',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: false,
+        sentAt : 1551133930594,
+        to: 'momo@momo.com',
+        from: 'Alon@appsus.com'
+        },
+        {
+        id: 'e103',
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        isRead: false,
+        sentAt : 1551133930594,
+        to: 'momo@momo.com',
+        from: 'Beni@appsus.com'
+        },
+    ]
+    utilService.saveToStorage(MAIL_KEY, mails);
+  }
   return mails
 }
 
