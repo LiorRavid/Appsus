@@ -7,9 +7,14 @@ export const noteService = {
     remove,
     addNote,
     save,
-    getById
+    getById,
+    updateNoteTodo,
 };
 
+function updateNoteTodo(note, todoIdx, value) {
+    note.info.todos[todoIdx].isChecked = value;
+    storageService.put(KEY, note);
+}
 
 function addNote(type, value) {
     let note = _createBasicNote(type);

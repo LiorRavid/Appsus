@@ -1,8 +1,8 @@
 export default {
     props: ['note'],
     template: `
-<div class="note-preview">
-    <p>{{note.info.title}}</p>
+<div >
+    <h3>{{note.info.title}}</h3>
     <iframe width="200" height="150"
 :src="embedded">
 </iframe>
