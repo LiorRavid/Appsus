@@ -49,7 +49,7 @@ a {
 .app-header {
     width: 100%;
     position: fixed;
-    height: 5vh;
+    height: 8vh;
     background-color: rgb(165, 165, 165);
 }
 
@@ -59,7 +59,12 @@ a {
     height: 100%;
 }
 
+.logo {
+    font-size: 30px;
+}
+
 .btn-main-menu {
+    font-size: 30px;
     font-family: fa;
 }
 
@@ -73,21 +78,52 @@ nav {
     padding: 10px;
 }
 
-nav ul {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+nav span {
+    font-size: 30px;
+    font-family: fa;
 }
 
-nav li {}
+nav ul {
+    margin: 0;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    display: grid;
+    align-items: center;
+    justify-content: space-around;
+    grid-template-columns: repeat(2, 1fr);
+}
 
-.menu-link-book {}
+nav li {
+    flex-direction: column;
+    display: flex;
+}
 
-.menu-link-keep {}
+nav div {
+    font-family: lato;
+}
 
-.menu-link-mail {}
+.appsus-menu-list a {}
 
-.menu-link-about {}
+.appsus-menu-list a:hover {
+    color: rgb(107, 107, 107);
+}
+
+.menu-link-book::before {
+    content: '\f02d';
+}
+
+.menu-link-keep::before {
+    content: '\f249';
+}
+
+.menu-link-mail::before {
+    content: '\f0e0';
+}
+
+.menu-link-about::before {
+    content: '\f129';
+}
 
 
 /* main content */

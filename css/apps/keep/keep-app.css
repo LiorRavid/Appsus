@@ -216,3 +216,92 @@ iframe {
 .note-preview img {
     width: 100%;
 }
+
+.note-details-modal {
+    box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgb(0 0 0 / 30%);
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.8px solid rgb(211 211 211);
+    border-radius: 0.5rem;
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(92 92 92 / 76%);
+}
+
+.edit-note-img {
+    max-width: 300px;
+}
+
+.note-details iframe {
+    height: 200px;
+}
+
+.btn-note-detail-save,
+.btn-note-detail-close {
+    font-size: 22px;
+    font-family: fa;
+}
+
+.btn-note-detail-save::before {
+    content: '\f0c7';
+}
+
+.btn-note-detail-close::before {
+    content: '\f00d';
+}
+
+.edit-bar {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.btn-note-detail-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-details input {
+    width: 100%;
+    border: none;
+    line-height: 2rem;
+    font-size: 20px;
+    border-bottom: 3px solid lightgray;
+    margin-bottom: 10px;
+}
+
+.note-details textarea {
+    height: 180px;
+    border: 3px solid lightgray;
+    width: 100%;
+    font-size: 20px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.edit-todos input[type="text"] {
+    line-height: 17px;
+    font-size: 16px;
+    flex-basis: 90%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid lightgray;
+}
+
+.edit-todos input[type="checkbox"] {
+    line-height: 17px;
+    flex-basis: 10%;
+}
+
+.edit-todos li {
+    display: flex;
+}

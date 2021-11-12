@@ -8,17 +8,21 @@ export default {
             <nav v-if="showMenu">
                     
                     <ul class="appsus-menu-list clean-list">
-                        <li class="menu-link-book" @click="showMenu=false">
-                        <router-link  to="/book">book</router-link>
+                        <li  @click="showMenu=false">
+                        <router-link  to="/book"><span class="menu-link-book"></span><div>Book</div></router-link>
+                        
                         </li>
-                        <li class="menu-link-keep" @click="showMenu=false">
-                        <router-link to="/keep">keep</router-link>
+                        <li  @click="showMenu=false">
+                        <router-link  to="/keep"><span class="menu-link-keep"></span><div>Keep</div></router-link>
+                        
                         </li>
-                        <li class="menu-link-mail" @click="showMenu=false">
-                        <router-link to="/mail">mail</router-link>
+                        <li  @click="showMenu=false">
+                        <router-link  to="/mail"><span class="menu-link-mail"></span><div>Mail</div></router-link>
+                        
                         </li>
-                        <li class="menu-link-about" @click="showMenu=false">
-                        <router-link to="/about">about</router-link>
+                        <li @click="showMenu=false">
+                        <router-link   to="/about"><span class="menu-link-about"></span><div>About</div></router-link>
+                        
                         </li>
                     </ul>
             </nav>
