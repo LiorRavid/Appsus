@@ -12,6 +12,7 @@ export const noteService = {
     updateNote,
     updateNoteStyle,
     duplicateNote,
+    edit,
 };
 
 function duplicateNote(note) {
@@ -72,7 +73,9 @@ function remove(noteId) {
     return storageService.remove(KEY, noteId);
 }
 
-
+function edit(note) {
+    return storageService.put(KEY, note)
+}
 
 function save(note) {
     // if (note.id) return storageService.put(KEY, note);

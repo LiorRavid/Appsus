@@ -6,7 +6,7 @@ export default {
         <ul class="note-list-ul clean-list ">
             <li  v-for="note in notes" :class="{'pinned-notes':note.isPinned}" :key="note.id" class="note-preview-container" :style="{'background-color':note.style['background-color']}" >
                 <button :class="{'show-btn':note.isPinned}" class="btn-note-pin btn-note" @click="checkPinnedNote(note.isPinned,note.id)"></button>
-                <note-preview :note="note" ></note-preview>
+                <note-preview :note="note"  ></note-preview>
                 <section class="flex">
                     <button class="btn-note-delete btn-note"@click="remove(note.id) " ></button>
                     <div class="btn-note-color btn-note"><span></span>
@@ -14,8 +14,10 @@ export default {
                             <div v-for="n in 12" @click="$emit('changeColor',note.id,colors[n-1])" :style="{'background-color':colors[n-1]}" :value="colors[n-1]"></div>
                         </div>
                     </div>
+                    
                     <button class="btn-note-copy btn-note" @click="$emit('copy',note)"></button>
-                    <button class="btn-note-edit btn-note"></button>
+                    
+                    <router-link :to="'/keep/'+note.id"><button class="btn-note-edit btn-note"></button></router-link>
                     <button  class="btn-note-mail btn-note"></button>
                 </section>
             <!-- </div> -->
@@ -49,6 +51,9 @@ export default {
         remove(noteId) {
             this.$emit('remove', noteId);
         },
+        // select(note) {
+        //     this.$emit('selected', note);
+        // },
 
     },
     components: {

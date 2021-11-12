@@ -1,17 +1,26 @@
 import noteAdd from '../cmps/note-add.cmp.js';
 import noteList from '../cmps/note-list.cmp.js';
+import noteFilter from '../cmps/note-filter.cmp.js';
+import noteDetails from './note-details.cmp.js';
 import { noteService } from '../services/note-service.js'
 
 export default {
     template: `
         <section class="keep-app flex-grow">
+            
             <h2>keep</h2>
             <div>
-               <note-add @addedNote="loadNotes"></note-add>
-               <note-list @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="pinnedNotesToShow" :notePinnedSuccess="notePinnedSuccess" @copy="copyNote"></note-list>
-               <note-list @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="notesToShow"  @copy="copyNote"></note-list>
-             </div>   
             
+                <note-filter @filtered="setFilter"></note-filter>
+               <note-add @addedNote="loadNotes"></note-add>
+               <h3  v-if="pinnedNotes.length&&!filterBy">Pinned</h3>
+               <note-list v-if="!filterBy" @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="pinnedNotesToShow" :notePinnedSuccess="notePinnedSuccess" @copy="copyNote" @selected="selectNote"></note-list>
+               <h3  v-if="pinnedNotes.length&&!filterBy">Others</h3>
+               <note-list @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="notesToShow"  @copy="copyNote"></note-list>
+               
+               <!-- <note-details v-if="selectedNote" :note="selectedNote" @close="closeDetails" /> -->
+             </div>   
+            <router-view  @noteEdited="updatedMainApp"></router-view>
         </section>
     `,
     data() {
@@ -19,6 +28,10 @@ export default {
             notes: null,
             pinnedNotes: [],
             notePinnedSuccess: null,
+            unPinnedNotes: [],
+            filterBy: null,
+            selectedNote: null,
+            allNotesToDisplay: null,
         }
     },
     created() {
@@ -26,20 +39,61 @@ export default {
     },
     computed: {
         notesToShow() {
-            // console.log('hi')
-            return this.notes;
+            // console.log('', this.filterBy);
+            if (!this.filterBy) return this.unPinnedNotes;
+            const searchStr = this.filterBy.str.toLowerCase();
+            // const searchTxt = this.filterBy.txt.toLowerCase();
+            let searchScope = this.notes;
+            if (this.filterBy.type === 'note-txt' || this.filterBy.type === 'note-img' || this.filterBy.type === 'note-video' || this.filterBy.type === 'note-todos') searchScope = this.findScope(this.filterBy.type);
+            const notesToDisplay = searchScope.filter(note => {
+
+                if (!note.info.txt && !note.info.url && !note.info.todos) return (note.info.title.toLowerCase().includes(searchStr));
+                else if (note.info.url && !note.info.txt && !note.info.todos) {
+                    return (note.info.title.toLowerCase().includes(searchStr) || note.info.url.toLowerCase().includes(searchStr))
+                } else if (note.info.txt && !note.info.url && !note.info.todos) return (note.info.title.toLowerCase().includes(searchStr) || note.info.txt.toLowerCase().includes(searchStr))
+                else if (!note.info.txt && !note.info.url && note.info.todos) {
+                    const todoSearch = note.info.todos.some(todo => {
+                        return (todo.txt.toLowerCase().includes(searchStr))
+                    });
+                    return todoSearch || note.info.title.toLowerCase().includes(searchStr);
+                }
+
+            });
+            this.allNotesToDisplay = notesToDisplay;
+            if (notesToDisplay || notesToDisplay === '') return notesToDisplay;
+            else return this.unPinnedNotes;
+
+
         },
         pinnedNotesToShow() {
-            return this.pinnedNotes
+            return this.pinnedNotes;
         }
+
     },
     methods: {
-
+        updatedMainApp() {
+            this.loadNotes();
+        },
+        closeDetails() {
+            this.selectedNote = null;
+        },
+        selectNote(note) {
+            this.selectedNote = note;
+        },
+        findScope(type) {
+            return this.notes.filter(note => {
+                return (note.type === type)
+            });
+        },
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
+        },
         loadNotes() {
             noteService.query()
                 .then(notes => {
                     this.notes = notes
                     this.gatherPinnedNotes();
+                    this.gatherUnPinnedNotes();
                 });
         },
         updateColor(id, color) {
@@ -52,13 +106,12 @@ export default {
         removeNote(id) {
             noteService.remove(id)
                 .then(() => {
-                    console.log(id)
-                        // const msg = {
-                        //     txt: 'Deleted succesfully',
-                        //     type: 'success'
-                        // };
-                        // eventBus.$emit('showMsg', msg);
-                    this.notes = this.notes.filter(note => note.id !== id)
+                    // const msg = {
+                    //     txt: 'Deleted succesfully',
+                    //     type: 'success'
+                    // };
+                    // eventBus.$emit('showMsg', msg);
+                    this.loadNotes();
                 })
                 .catch(err => {
                     // console.log('err', err);
@@ -92,10 +145,18 @@ export default {
             this.pinnedNotes = pinnedArr;
             console.log('', this.pinnedNotes);
         },
+        gatherUnPinnedNotes() {
+            const unPinnedArr = this.notes.filter(note => {
+                return (!note.isPinned)
+            });
+            this.unPinnedNotes = unPinnedArr;
+        },
     },
 
     components: {
+        noteFilter,
         noteAdd,
         noteList,
+        noteDetails,
     }
 }
