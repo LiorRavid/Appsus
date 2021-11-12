@@ -7,10 +7,11 @@ _createMails()
 export const mailService = {
   query,
   remove,
-  // getEmptyMail,
   save,
-  getById
+  getById,
+  readPercentage
 }
+
 
 function query() {
   return storageService.query(MAIL_KEY)
@@ -28,10 +29,17 @@ function getById(mailId) {
   return storageService.get(MAIL_KEY, mailId);
 }
 
-// function getEmptyMail() {
-//   return {
-//   };
-// }
+function readPercentage(){
+  var unReadNum = 0
+  const perc = query().then((mails)=>{ 
+    mails.forEach((mail)=>{
+      if(!mail.isRead)unReadNum++
+    })
+    const percentage = unReadNum/mails.length * 100
+    return percentage
+  })
+  return perc
+}
 
 function _createMails(){
   let mails = utilService.loadFromStorage(MAIL_KEY);

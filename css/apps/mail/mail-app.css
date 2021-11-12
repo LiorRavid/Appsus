@@ -1,4 +1,6 @@
-
+.mail-app {
+    font-family: lato;
+}
 /* mail-layout */
 .app-main-layout .mail-layout{
     display: flex;
@@ -10,14 +12,15 @@
 .side-bar{
     width: 20%; 
     height: 100%;
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
+    border-right: 2px solid lightgray;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .compose{
-    width: 100px;
+    width: 140px;
     height: 40px;
     border: 1px solid lightgray;
     border-radius: 30px;
@@ -36,17 +39,49 @@
 }
 
 .folders{
-    background-color: lightskyblue;
-    width: 100px;
+    /* background-color: lightskyblue; */
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
 .folder-list{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     list-style: none;
-    margin: 20px 0;
+    margin: 0;
+    width: 100%;
     padding: 0;
 }
+
+/* .li.sent{
+    margin-left: 25px;
+} */
+
+.percentage-bar{
+    height: 30px;
+    width: 100px;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.read-percentage{
+    height: 100%;
+    width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to left, #F2709C, #FF9472);
+    box-shadow: 0 3PX 3PX -5PX #F2709C, 0 2PX 5PX #FF9472 ;
+    /* opacity: 0; */
+    border-radius: 20px;
+    /* transition:1s ease 0.3s; */
+}
+
 
 
 
@@ -272,6 +307,8 @@
     width: 100%;
     height: 100%;
     box-shadow: 0px 0px 7px .5px rgba(82, 82, 82, 0.66);
+    display: flex;
+    flex-direction: column;
 }
 
 .new-header{
@@ -303,6 +340,7 @@ color: lightgrey;
     border: none;
     width: 100%;
     line-height: 2rem;
+    font-family: lato;
 }
 
 .new-mail-box input:focus{
@@ -318,11 +356,33 @@ color: lightgrey;
     border: none;
     max-width: 100%; 
     resize: none;
+    font-family: lato;
 }
 
 
 .text-area:focus{
     outline: none;
+}
+
+.btn-send{
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
+}
+
+.btn-send .btn-trash{
+    font-size:30px;
+    color:gray;
+}
+
+.submit{
+    border: none;
+    border-radius: 2px;
+    color: whitesmoke;
+    background-color: rgb(48, 48, 206);
+    width: 70px;
+    height: 40px;
 }
 
 
