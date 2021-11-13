@@ -1,5 +1,6 @@
 import { noteService } from './../services/note-service.js';
 import noteEditTools from './../cmps/note-edit-tools.cmp.js'
+import { eventBus } from '../../../services/event-bus-service.js'
 export default {
     template: `
         <section class="note-details">
@@ -89,6 +90,19 @@ export default {
                 .then(() => {
                     this.updatedMainApp();
                     this.$router.push('/keep');
+                    const msg = {
+                        txt: 'Deleted succesfully',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
+                })
+                .catch(err => {
+                    console.log('err', err);
+                    const msg = {
+                        txt: 'Error. Please try later',
+                        type: 'error'
+                    };
+                    eventBus.$emit('showMsg', msg);
                 });
 
         },

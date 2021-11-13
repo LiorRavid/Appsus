@@ -92,7 +92,7 @@ function _starterNotes() {
     return [{
             id: utilService.makeId(),
             type: 'note-img',
-            isPinned: true,
+            isPinned: false,
             info: {
                 title: '',
                 url: 'https://i.pinimg.com/originals/4f/b5/88/4fb5886838c0492fc4b0cee3de87b648.jpg'
@@ -103,7 +103,7 @@ function _starterNotes() {
         {
             id: utilService.makeId(),
             type: 'note-txt',
-            isPinned: false,
+            isPinned: true,
             info: {
                 title: '',
                 txt: `
@@ -130,6 +130,17 @@ function _starterNotes() {
         },
         {
             id: utilService.makeId(),
+            type: 'note-img',
+            isPinned: false,
+            info: {
+                title: '',
+                url: 'https://assets.hongkiat.com/uploads/programming-jokes/joke-job-arrays.jpg'
+            },
+            style: { 'background-color': '#aecbfa' },
+            label: [],
+        },
+        {
+            id: utilService.makeId(),
             type: 'note-txt',
             isPinned: false,
             info: {
@@ -141,13 +152,35 @@ function _starterNotes() {
         },
         {
             id: utilService.makeId(),
-            type: 'note-todos',
+            type: 'note-txt',
             isPinned: false,
+            info: {
+                title: '',
+                txt: 'blah blah blah'
+            },
+            style: { 'background-color': '#ffffff' },
+            label: [],
+        },
+        {
+            id: utilService.makeId(),
+            type: 'note-todos',
+            isPinned: true,
             info: {
                 title: 'Sprint list so far',
                 todos: [{ txt: 'minesweeper', isChecked: true }, { txt: 'memegen', isChecked: true }, { txt: 'appsus', isChecked: false }],
             },
             style: { 'background-color': '#ccff90' },
+            label: [],
+        },
+        {
+            id: utilService.makeId(),
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                title: '',
+                txt: 'blah blah blah'
+            },
+            style: { 'background-color': '#ffffff' },
             label: [],
         },
         {
@@ -158,9 +191,43 @@ function _starterNotes() {
                 title: 'Me while sprint 3',
                 url: 'https://media2.giphy.com/media/unQ3IJU2RG7DO/giphy.gif'
             },
+            style: { 'background-color': '#ffffff' },
+            label: [],
+        },
+
+        {
+            id: utilService.makeId(),
+            type: 'note-img',
+            isPinned: false,
+            info: {
+                title: '',
+                url: 'https://miro.medium.com/max/1050/1*80PmaIWGzskApKLQ_uSpZg.png'
+            },
             style: { 'background-color': '#aecbfa' },
             label: [],
-        }
+        },
+        {
+            id: utilService.makeId(),
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                title: '',
+                txt: 'Proggrammer - A machine that turns coffee into code'
+            },
+            style: { 'background-color': '#fff475' },
+            label: [],
+        },
+        {
+            id: utilService.makeId(),
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                title: '',
+                txt: 'blah blah blah'
+            },
+            style: { 'background-color': '#ffffff' },
+            label: [],
+        },
     ];
 }
 

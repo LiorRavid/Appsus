@@ -1,6 +1,7 @@
 export default {
     template: `
         <div class="note-filter">
+            <div>
                 <span></span>
                 <input @input="filter" v-model="filterBy.str" type="text" placeholder="Search...">
                 <select  @change="filter" v-model="filterBy.type" name="type" id=""><option selected value="" >all</option>
@@ -9,6 +10,7 @@ export default {
                     <option value="note-video">Video</option>
                     <option value="note-todos">List</option>
                 </select>
+</div>
         </div>
     `,
     data() {

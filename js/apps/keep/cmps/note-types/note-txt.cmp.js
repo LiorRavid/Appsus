@@ -3,6 +3,6 @@ export default {
     template: `
     <div >
         <h3>{{note.info.title}}</h3>
-        <pre>{{note.info.txt}}</pre>
+        <p>{{note.info.txt}}</p>
     </div>`
 };

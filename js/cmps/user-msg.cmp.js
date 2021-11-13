@@ -4,7 +4,6 @@ export default {
 
     template: `
      <div v-if="msg"  class="user-msg" :class="msg.type">
-         <button @click="cancelMsg">X</button>
          <h4>{{msg.type}}</h4>
          <p>{{msg.txt}}</p>
     </div>

@@ -1,4 +1,5 @@
 import { noteService } from '../services/note-service.js';
+import { eventBus } from '../../../services/event-bus-service.js'
 export default {
     template: `
         <section class="note-add flex justify-center">
@@ -6,10 +7,12 @@ export default {
                 <form @submit.prevent="onAddNote(chosenNoteType)">
                     <input type="text" v-model="value" :placeHolder="placeHolder">
                 </form>
+                <section class="flex">
                     <button class="btn-note-txt btn-note" @click="onChooseNoteType($event,'Whats on your mind?','note-txt') "></button>
                     <button class="btn-note-video btn-note" @click="onChooseNoteType($event,'Enter video URL...','note-video')"></button>
                     <button class="btn-note-img btn-note" @click="onChooseNoteType($event,'Enter image URL...','note-img')"></button>
-                    <button class="btn-note-todos btn-note" @click="onChooseNoteType($event,'Enter comma separeted list','note-todos')"></button>
+                    <button class="btn-note-todos btn-note" @click="onChooseNoteType($event,'Enter comma separeted list','note-todos')"></button></section>
+                    <button class="btn-add-todo btn-note" @click="onAddNote(chosenNoteType)"></button>
              </div>   
         </section>
     `,
@@ -62,6 +65,11 @@ export default {
                 console.log(this.$route)
                 this.$emit('addedNote');
                 this.value = '';
+                const msg = {
+                    txt: 'Added succesfully',
+                    type: 'success'
+                };
+                eventBus.$emit('showMsg', msg);
             });
         },
     }

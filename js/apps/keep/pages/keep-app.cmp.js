@@ -3,6 +3,7 @@ import noteList from '../cmps/note-list.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
 import noteDetails from './note-details.cmp.js';
 import { noteService } from '../services/note-service.js'
+import { eventBus } from '../../../services/event-bus-service.js'
 
 export default {
     template: `
@@ -12,9 +13,9 @@ export default {
                 <note-filter @filtered="setFilter"></note-filter>
                <note-add @addedNote="loadNotes"></note-add>
                <h3  v-if="pinnedNotes.length&&!filterBy||filterBy.type===''">Pinned</h3>
-               <note-list v-if="!filterBy||filterBy.type===''" @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="pinnedNotesToShow" :notePinnedSuccess="notePinnedSuccess" @copy="copyNote" @selected="selectNote"></note-list>
+               <note-list class="min-height-ul-pinned" v-if="!filterBy||filterBy.type===''" @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="pinnedNotesToShow" :notePinnedSuccess="notePinnedSuccess" @copy="copyNote" @selected="selectNote"></note-list>
                <h3  v-if="pinnedNotes.length&&!filterBy||filterBy.type===''">Others</h3>
-               <note-list @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="notesToShow"  @copy="copyNote"></note-list>
+               <note-list class="min-height-ul" @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="notesToShow"  @copy="copyNote"></note-list>
                
                <!-- <note-details v-if="selectedNote" :note="selectedNote" @close="closeDetails" /> -->
              </div>  
@@ -90,7 +91,7 @@ export default {
         loadNotes() {
             noteService.query()
                 .then(notes => {
-                    this.notes = notes
+                    this.notes = notes;
                     this.gatherPinnedNotes();
                     this.gatherUnPinnedNotes();
                 });
@@ -105,20 +106,20 @@ export default {
         removeNote(id) {
             noteService.remove(id)
                 .then(() => {
-                    // const msg = {
-                    //     txt: 'Deleted succesfully',
-                    //     type: 'success'
-                    // };
-                    // eventBus.$emit('showMsg', msg);
+                    const msg = {
+                        txt: 'Deleted succesfully',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
                     this.loadNotes();
                 })
                 .catch(err => {
-                    // console.log('err', err);
-                    // const msg = {
-                    //     txt: 'Error. Please try later',
-                    //     type: 'error'
-                    // };
-                    // eventBus.$emit('showMsg', msg);
+                    console.log('err', err);
+                    const msg = {
+                        txt: 'Error. Please try later',
+                        type: 'error'
+                    };
+                    eventBus.$emit('showMsg', msg);
                 });
         },
         updatePinned(isPinned, id) {
@@ -149,6 +150,7 @@ export default {
                 return (!note.isPinned)
             });
             this.unPinnedNotes = unPinnedArr;
+            console.log('', this.unPinnedNotes);
         },
     },
 
@@ -157,5 +159,6 @@ export default {
         noteAdd,
         noteList,
         noteDetails,
+        eventBus,
     }
 }

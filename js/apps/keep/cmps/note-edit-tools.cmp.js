@@ -1,4 +1,5 @@
 import { noteService } from './../services/note-service.js'
+import { eventBus } from '../../../services/event-bus-service.js';
 
 export default {
     props: ['note'],
@@ -14,7 +15,7 @@ export default {
                     <button class="btn-note-copy btn-note" @click="copyNote(note)"></button>
                     
                     <!-- <router-link :to="'/keep/'+note.id"><button class="btn-note-edit btn-note"></button></router-link> -->
-                    <button  class="btn-note-mail btn-note"></button>
+                    <button @click="sendMail(note)" class="btn-note-mail btn-note"></button>
                 </section>
     `,
     data() {
@@ -30,6 +31,20 @@ export default {
         this.loadNotes();
     },
     methods: {
+        sendMail(note) {
+            console.log(note.type)
+            let value = '';
+            if (note.type === 'note-txt') value = note.info.txt;
+            if (note.type === 'note-img' || note.type === 'note-video') value = note.info.url;
+            if (note.type === 'note-todos') {
+                note.info.todos.forEach(todo => {
+                    value += todo.txt + ','
+                });
+                value = value.substring(0, value.length - 1)
+            }
+            this.$router.push(`/mail/new?subject=my keep&body=${value}`);
+
+        },
         updateMainApp() {
             this.$emit('noteEdited');
         },
@@ -55,11 +70,11 @@ export default {
             noteService.remove(id)
                 .then(() => {
                     console.log(id)
-                        // const msg = {
-                        //     txt: 'Deleted succesfully',
-                        //     type: 'success'
-                        // };
-                        // eventBus.$emit('showMsg', msg);
+                    const msg = {
+                        txt: 'Deleted succesfully',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
 
                     this.updateMainApp();
                     this.$router.push('/keep');
@@ -67,12 +82,12 @@ export default {
 
                 })
                 .catch(err => {
-                    // console.log('err', err);
-                    // const msg = {
-                    //     txt: 'Error. Please try later',
-                    //     type: 'error'
-                    // };
-                    // eventBus.$emit('showMsg', msg);
+                    console.log('err', err);
+                    const msg = {
+                        txt: 'Error. Please try later',
+                        type: 'error'
+                    };
+                    eventBus.$emit('showMsg', msg);
                 });
         },
         copyNote(note) {

@@ -8,7 +8,8 @@ const options = {
     router,
     template: `
         <section class="main-app-container">
-            <user-msg />
+            <transition name="bounce">
+            <user-msg /></transition>
             <app-header />
              <router-view  class="app-main-layout"/>
             <app-footer />

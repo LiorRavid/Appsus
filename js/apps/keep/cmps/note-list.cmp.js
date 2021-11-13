@@ -40,6 +40,7 @@ export default {
     },
     methods: {
         sendMail(note) {
+            console.log(note.type)
             let value = '';
             if (note.type === 'note-txt') value = note.info.txt;
             if (note.type === 'note-img' || note.type === 'note-video') value = note.info.url;

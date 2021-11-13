@@ -76,8 +76,9 @@ a {
     width: 100%;
     position: fixed;
     height: 8vh;
-    background-color: rgb(165, 165, 165);
-    z-index:1;
+    background-color: rgb(205, 227, 254);
+    /* background-color: rgb(165, 165, 165); */
+    z-index: 1;
 }
 
 .app-header-section {
@@ -108,7 +109,8 @@ a {
 }
 
 nav {
-    background-color: rgb(228, 228, 228);
+    border-radius: 8px;
+    background-color: rgb(232, 241, 253);
     float: right;
     padding: 10px;
 }
@@ -138,6 +140,7 @@ nav div {
     font-family: lato;
 }
 
+
 /* .appsus-menu-list a {} */
 
 .appsus-menu-list a:hover {
@@ -163,12 +166,23 @@ nav div {
 
 /* main content */
 
+.home-page {
+    text-align: center;
+    font-family: lato;
+}
+
 
 /* footer */
 
 .app-footer {
+    font-family: lato;
+    text-align: center;
     height: 5vh;
-    background-color: rgb(165, 165, 165);
+    background-color: rgb(205, 227, 254);
+}
+
+.app-footer h3 {
+    margin: 10px;
 }
 
 
@@ -222,4 +236,46 @@ nav div {
 {
     transform: translateX(10px);
     opacity: 0;
+}
+
+.user-msg {
+    font-family: lato;
+    position: fixed;
+    top: 55px;
+    left: 0;
+    padding: 10px;
+    background-color: white;
+    border-radius: 1rem;
+    z-index: 6;
+}
+
+.user-msg h4,
+p {
+    margin: 1px;
+}
+
+.success {
+    margin: 1px;
+    border: 4px solid rgb(27, 180, 27);
+}
+
+.error {
+    margin: 1px;
+    border: 4px solid red;
+}
+
+.user-msg button {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+.about-page {
+    font-family: lato;
+    text-align: center;
+}
+
+.book-app {
+    font-family: lato;
+    text-align: center;
 }
