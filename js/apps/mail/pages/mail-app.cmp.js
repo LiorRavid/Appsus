@@ -20,13 +20,15 @@ export default {
                     </router-link>
                     <div class="folders">
                         <ul class="folder-list">
-                            <li class="li" @click="setFilter('inbox')">
-                                <div class="btn-inbox">Inbox</div>
-                            </li>
-                            <!-- <li class="li">Starred</li> -->
-                            <li class="li-sent" @click="setFilter('sent')">
-                                <div class="btn-sent">Sent Mails</div>
-                            </li>
+                            <div class="divside">
+                                <li class="li" @click="setFilter('inbox')">
+                                    <div class="btn-inbox">Inbox</div>
+                                </li>
+                                <!-- <li class="li">Starred</li> -->
+                                <li class="li-sent" @click="setFilter('sent')">
+                                    <div class="btn-sent">Sent Mails</div>
+                                </li>
+                            </div>
                             <!-- <li class="li">Drafts</li> -->
                             <li>
                                 <percentage-bar :percBar="showPercentage" v-model="percentage"></percentage-bar>
