@@ -16,6 +16,31 @@
     src: url(./../font/fa-regular-400.ttf);
 }
 
+@font-face {
+    font-family: aquire;
+    src: url(./../font/AquireBold-8Ma60.otf);
+}
+
+@font-face {
+    font-family: robus;
+    src: url(./../font/Robus-BWqOd.otf);
+}
+
+@font-face {
+    font-family: veggy;
+    src: url(./../font/VeggyPersonalUseSemiExpandedMedium-1GMov.ttf);
+}
+
+@font-face {
+    font-family: watcher;
+    src: url(./../font/WatcherPersonalUseBold-BWexB.ttf);
+}
+
+@font-face {
+    font-family: fluid;
+    src: url(./../font/FluidBold-lgOEq.ttf);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -40,13 +65,14 @@ a {
 }
 
 .app-main-layout {
-    margin-top: 5vh;
+    margin-top: 8vh;
 }
 
 
 /* header */
 
 .app-header {
+    z-index: 1;
     width: 100%;
     position: fixed;
     height: 8vh;
@@ -60,7 +86,15 @@ a {
 }
 
 .logo {
+    font-family: aquire;
     font-size: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.logo div {
+    font-family: veggy;
+    letter-spacing: 0.2rem;
 }
 
 .btn-main-menu {
@@ -134,4 +168,57 @@ nav div {
 .app-footer {
     height: 5vh;
     background-color: rgb(165, 165, 165);
+}
+
+
+/* animations */
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .7s;
+}
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active below version 2.1.8 */
+
+{
+    opacity: 0;
+}
+
+.bounce-enter-active {
+    animation: bounce-in .5s;
+}
+
+.bounce-leave-active {
+    animation: bounce-in .5s reverse;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */
+
+{
+    transform: translateX(10px);
+    opacity: 0;
 }

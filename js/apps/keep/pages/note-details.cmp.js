@@ -9,11 +9,11 @@ export default {
                 <input type="text" placeholder="Title" v-model="inputs.title">
                 <textarea v-model="inputs['note-txt']" v-show="findType==='note-txt'"  name="" id="" cols="30" rows="10"></textarea>
                 <div v-show="findType==='note-img'">
-                <img class="edit-note-img"   :src="note.info.url" alt="">
+                <img class="edit-note-img" :src="note.info.url" alt="">
                 <input v-model="inputs['note-img']" type="text">
                 </div>
                 <div v-if="findType==='note-todos'" class="edit-todos">
-                    <button @click="addTodoInput">add</button>
+                    <button class="btn-edit-add-todo btn-note" @click="addTodoInput"></button>
                 <ul class="clean-list" >
                     <li v-for="(todo,index) in this.note.info.todos">
                         <input type="checkbox"  v-model="inputs['note-todos'][index].isChecked">

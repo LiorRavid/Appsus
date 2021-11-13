@@ -1,10 +1,9 @@
 export default {
     template: `
         <div class="note-filter">
-
+                <span></span>
                 <input @input="filter" v-model="filterBy.str" type="text" placeholder="Search...">
-                <select  @change="filter" v-model="filterBy.type" name="type" id="">
-                <option default value="all">all</option>
+                <select  @change="filter" v-model="filterBy.type" name="type" id=""><option selected value="" >all</option>
                     <option value="note-txt">Text</option>
                     <option value="note-img">Image</option>
                     <option value="note-video">Video</option>

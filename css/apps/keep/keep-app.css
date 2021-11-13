@@ -140,7 +140,16 @@
     content: '\f0e0';
 }
 
+.btn-edit-add-todo {
+    font-family: fa;
+}
+
+.btn-edit-add-todo::before {
+    content: '\f067';
+}
+
 .note-add div {
+    margin-top: 10px;
     padding: 5px;
     padding-right: 8px;
     padding-left: 8px;
@@ -152,6 +161,7 @@
 }
 
 .note-add input {
+    font-size: 17px;
     width: 200px;
     line-height: 2rem;
     border: none;
@@ -166,6 +176,7 @@
 }
 
 .note-list-ul>li {
+    z-index: 0;
     break-inside: avoid;
     display: inline-block;
     border: 0.8px solid lightgray;
@@ -217,6 +228,37 @@ iframe {
     width: 100%;
 }
 
+.note-filter {
+    box-shadow: 0px 0px 7px .5px rgba(82, 82, 82, 0.66);
+    padding: 6px;
+    background-color: white;
+    z-index: 2;
+    display: inline-block;
+    position: fixed;
+    top: 4vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.note-filter input,
+select {
+    font-family: lato;
+    border: none;
+    font-size: 16px;
+}
+
+.note-filter select {
+    border-left: 1px solid gray;
+}
+
+.note-filter span {
+    font-family: fa;
+}
+
+.note-filter span::before {
+    content: '\f002'
+}
+
 .note-details-modal {
     box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgb(0 0 0 / 30%);
     padding: 15px;
@@ -236,6 +278,11 @@ iframe {
     bottom: 0;
     left: 0;
     background-color: rgb(92 92 92 / 76%);
+}
+
+.note-details-modal input,
+textarea {
+    background-color: transparent;
 }
 
 .edit-note-img {
