@@ -3,7 +3,7 @@ export default {
     template: `
         <section class="note-add flex justify-center">
             <div>
-                <form @submit.prevent="onAddNote($event,chosenNoteType)">
+                <form @submit.prevent="onAddNote(chosenNoteType)">
                     <input type="text" v-model="value" :placeHolder="placeHolder">
                 </form>
                     <button class="btn-note-txt btn-note" @click="onChooseNoteType($event,'Whats on your mind?','note-txt') "></button>
@@ -25,14 +25,25 @@ export default {
         makeTodo() {
             let list = this.value.split(',');
             return list.map(item => {
-
                 return { txt: item, isChecked: false };
             });
 
         }
 
     },
+    created() {
 
+
+        if (this.$route.query.from) {
+            this.value = `${this.$route.query.from}|
+              ${this.$route.query.subject}|
+            ${this.$route.query.body}
+            `;
+            this.onAddNote('note-txt');
+        }
+        this.$router.push('/keep');
+
+    },
     methods: {
         onChooseNoteType(ev, placeHolder, type) {
             ev.stopPropogations;
@@ -40,16 +51,17 @@ export default {
             this.placeHolder = placeHolder;
             this.chosenNoteType = type;
         },
-        onAddNote(ev, type) {
+        onAddNote(type) {
             console.log(type);
             if (type === 'note-todos') {
                 this.value = this.makeTodo;
                 console.log('', this.value);
             }
             noteService.addNote(type, this.value).then(note => {
+
+                console.log(this.$route)
                 this.$emit('addedNote');
                 this.value = '';
-
             });
         },
     }

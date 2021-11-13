@@ -27,7 +27,7 @@ export default {
                         </div>
                         <div class = 'btns-details'>
                             <div class="btn-back" @click.stop="backToMails"></div>
-                            <div class="btn-Keep"></div>
+                            <div @click="sendToKeep" class="btn-Keep"></div>
                             <div class="btn-trash" @click.stop="removeMail(mail.id)"></div>
                         </div>
                     </header>
@@ -54,9 +54,12 @@ export default {
     created() {
         const mailId = this.$route.params.mailId
         mailService.getById(mailId)
-                    .then(mail => this.mail = mail); 
+            .then(mail => this.mail = mail);
     },
     methods: {
+        sendToKeep() {
+            this.$router.push(`/keep?from=${this.mail.from}&subject=${this.mail.subject}&body=${this.mail.body}`);
+        },
         // sayAndClose() {
         //     console.log('Just saying');
         //     this.$router.push('/male');
@@ -66,13 +69,13 @@ export default {
                 .then(this.loadMails);
             this.$router.push('/mail')
         },
-        backToMails(){
+        backToMails() {
             this.$router.push('/mail')
         }
     },
     computed: {
-        nameOfMailSend(){
-            console.log('this.mail',this.mail.from);
+        nameOfMailSend() {
+            console.log('this.mail', this.mail.from);
             const name = this.mail.from.split('@')
             return name[0]
         },
