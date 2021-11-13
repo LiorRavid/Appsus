@@ -1,5 +1,6 @@
 .mail-app {
     font-family: lato;
+    font-size: 16px;
 }
 
 
@@ -28,6 +29,8 @@
     width: 140px;
     height: 40px;
     border: 1px solid lightgray;
+    border-image: linear-gradient(to left, #743ad5, #d53a9d);
+    /* border: 3px solid linear-gradient(90deg, #F2709C 0%, #FF9472, #F2709C 70%, #FF9472 100%) border-box; */
     border-radius: 30px;
     display: flex;
     justify-content: center;
@@ -153,12 +156,13 @@
 }
 
 
-/* .mail-preview-container {
-   
+/* .mail-preview-container li {
+    padding: 400px;
 } */
 
 .mail-preview {
     padding: 0 20px 0;
+    padding: 25px;
     margin: 0;
     width: 100%;
     height: 30px;
@@ -167,6 +171,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.mail-subject{
+    display: flex;
+    gap:50px;
 }
 
 .unread {
@@ -503,3 +512,82 @@ select {
     width: 70px;
     height: 40px;
 }
+
+/* .btn-Hamnurger{
+    display: none;
+} */
+
+
+/* QUERY */
+
+/* medium */
+@media screen and (max-width: 1000px){
+
+}
+
+/* small */
+@media screen and (max-width: 750px){
+    .mail-preview {
+        padding: 0 20px 0;
+        padding: 5px;
+        margin: 0;
+        width: 100%;
+        height: 100px;
+        border: 1px solid lightgray;
+        border-top: none;
+        display: flex;
+        /* flex-direction: column; */
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    .mail-subject{
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+    }
+    .date{
+        font-size: 14px;
+        display: flex;
+        align-self: flex-start;
+    }
+
+    .mail-list{
+        width:70%;
+    }
+
+    .side-bar{
+        /* position: absolute; */
+        /* z-index: -1; */
+        background-color: #cac7c7e6;
+        width: 30%;
+    }
+    .mail-filter{
+        display: flex;
+        justify-content: center;
+    }
+    .mail-filter .box {
+        box-shadow: rgba(82, 82, 82, 0.66) 0px 0px 7px 0.5px;
+        background-color: white;
+        z-index: 0;
+        float: center;
+        /* display: inline-block; */
+        position: static;
+        top: 0;
+        left: 0;
+        transform: none;
+        padding: 6px;
+    }
+    .compose{
+        width: 90px;
+    }
+    .folder-list{
+        width: 70%;
+    }
+
+    /* .btn-Hamnurger{
+        display: block;
+    } */
+
+    
+}
+

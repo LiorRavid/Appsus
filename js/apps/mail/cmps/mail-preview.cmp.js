@@ -3,9 +3,11 @@ export default {
     props: ['mail'],
     template: `
     <div class="mail-preview" :class="shadow" @mouseover="mouseover" @mouseleave="mouseleave">
+        <div class="mail-subject">
         <p :class="bold"> {{nameOfMailSend}} </p>
         <p :class="bold"> {{mail.subject}}</p> 
-        <p v-show="!isHover" :class="bold"> {{mailDate}}</p>
+        </div>
+        <p class="date" v-show="!isHover" :class="bold"> {{mailDate}}</p>
         <div class = "btns-mail-preview" v-show="isHover">
             <div :class="readUnread" @click.stop = "unread(mail)"></div>
             <div class="btn-trash" @click.stop="removePreview(mail.id)"></div>
