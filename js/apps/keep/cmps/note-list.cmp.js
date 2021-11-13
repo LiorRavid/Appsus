@@ -18,7 +18,7 @@ export default {
                     <button class="btn-note-copy btn-note" @click="$emit('copy',note)"></button>
                     
                     <router-link :to="'/keep/'+note.id"><button class="btn-note-edit btn-note"></button></router-link>
-                    <button  class="btn-note-mail btn-note"></button>
+                    <button @click="sendMail(note)"  class="btn-note-mail btn-note"></button>
                 </section>
             <!-- </div> -->
             </li>
@@ -39,6 +39,19 @@ export default {
 
     },
     methods: {
+        sendMail(note) {
+            let value = '';
+            if (note.type === 'note-txt') value = note.info.txt;
+            if (note.type === 'note-img' || note.type === 'note-video') value = note.info.url;
+            if (note.type === 'note-todos') {
+                note.info.todos.forEach(todo => {
+                    value += todo.txt + ','
+                });
+                value = value.substring(0, value.length - 1)
+            }
+            this.$router.push(`/mail/new?subject=my keep&body=${value}`);
+
+        },
         changeColor(x) {
             this.$emit()
             console.log(x);

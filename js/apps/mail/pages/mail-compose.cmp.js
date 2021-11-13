@@ -43,28 +43,34 @@ export default {
             </div>
         </section>`,
 
-        data(){
-            return {
-                mailTo:'',
-                subject:'',
-                text:'',
+    data() {
+        return {
+            mailTo: '',
+            subject: '',
+            text: '',
+        }
+    },
+    created() {
+        if (this.$route.query) {
+            this.subject = this.$route.query.subject;
+            this.text = this.$route.query.body;
+            this.mailTo = this.$route.query.from;
+        }
+    },
+    methods: {
+        sendMail() {
+            const newMail = {
+                id: null,
+                subject: this.subject,
+                body: this.text,
+                isRead: false,
+                sentAt: Date.now(),
+                to: 'user@appsus.com',
+                from: this.mailTo,
+                isSent: true
             }
+            mailService.save(newMail)
+                .then(() => this.$router.push('/mail'))
         },
-
-        methods:{
-            sendMail(){
-                const newMail = {
-                    id:null,
-                    subject: this.subject,
-                    body: this.text,
-                    isRead: false,
-                    sentAt : Date.now(),
-                    to: 'user@appsus.com',
-                    from: this.mailTo,
-                    isSent:true
-                }
-                mailService.save(newMail)
-                .then(()=>this.$router.push('/mail'))
-            },
-        },
+    },
 };
