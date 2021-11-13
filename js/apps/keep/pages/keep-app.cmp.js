@@ -13,7 +13,7 @@ export default {
                 <note-filter @filtered="setFilter"></note-filter>
                <note-add @addedNote="loadNotes"></note-add>
                <h3  v-if="pinnedNotes.length&&!filterBy||filterBy.type===''">Pinned</h3>
-               <note-list class="min-height-ul-pinned" v-if="!filterBy||filterBy.type===''" @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="pinnedNotesToShow" :notePinnedSuccess="notePinnedSuccess" @copy="copyNote" @selected="selectNote"></note-list>
+               <note-list class="min-height-ul-pinned" v-if="pinnedNotes.length||!filterBy||filterBy.type===''" @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="pinnedNotesToShow" :notePinnedSuccess="notePinnedSuccess" @copy="copyNote" @selected="selectNote"></note-list>
                <h3  v-if="pinnedNotes.length&&!filterBy||filterBy.type===''">Others</h3>
                <note-list class="min-height-ul" @updatePinnedStatus="updatePinned" @remove="removeNote" @changeColor="updateColor" :notes="notesToShow"  @copy="copyNote"></note-list>
                
