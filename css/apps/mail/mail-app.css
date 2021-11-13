@@ -28,8 +28,9 @@
 .compose {
     width: 140px;
     height: 40px;
-    border: 1px solid lightgray;
-    border-image: linear-gradient(to left, #743ad5, #d53a9d);
+    border: 2px solid lightgray;
+    /* border-image: linear-gradient(to left, #743ad5, #d53a9d); */
+    /* border:2px solid lightgray ; */
     /* border: 3px solid linear-gradient(90deg, #F2709C 0%, #FF9472, #F2709C 70%, #FF9472 100%) border-box; */
     border-radius: 30px;
     display: flex;
@@ -66,8 +67,8 @@
     content: '\f14d'
 }
 
-.divside{
-    margin:0;
+.divside {
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -173,9 +174,9 @@
     justify-content: space-between;
 }
 
-.mail-subject{
+.mail-subject {
     display: flex;
-    gap:50px;
+    gap: 50px;
 }
 
 .unread {
@@ -513,6 +514,7 @@ select {
     height: 40px;
 }
 
+
 /* .btn-Hamnurger{
     display: none;
 } */
@@ -520,13 +522,15 @@ select {
 
 /* QUERY */
 
-/* medium */
-@media screen and (max-width: 1000px){
 
-}
+/* medium */
+
+@media screen and (max-width: 1000px) {}
+
 
 /* small */
-@media screen and (max-width: 750px){
+
+@media screen and (max-width: 750px) {
     .mail-preview {
         padding: 0 20px 0;
         padding: 5px;
@@ -540,28 +544,26 @@ select {
         align-items: flex-start;
         justify-content: space-between;
     }
-    .mail-subject{
+    .mail-subject {
         display: flex;
         flex-direction: column;
-        gap:10px;
+        gap: 10px;
     }
-    .date{
+    .date {
         font-size: 14px;
         display: flex;
         align-self: flex-start;
     }
-
-    .mail-list{
-        width:70%;
+    .mail-list {
+        width: 70%;
     }
-
-    .side-bar{
+    .side-bar {
         /* position: absolute; */
         /* z-index: -1; */
-        background-color: #cac7c7e6;
+        /* background-color: #cac7c7e6; */
         width: 30%;
     }
-    .mail-filter{
+    .mail-filter {
         display: flex;
         justify-content: center;
     }
@@ -577,17 +579,13 @@ select {
         transform: none;
         padding: 6px;
     }
-    .compose{
+    .compose {
         width: 90px;
     }
-    .folder-list{
+    .folder-list {
         width: 70%;
     }
-
     /* .btn-Hamnurger{
         display: block;
     } */
-
-    
 }
-
