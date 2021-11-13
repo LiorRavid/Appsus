@@ -2,6 +2,7 @@ import { mailService } from '../services/mail.service.js';
 import { eventBus } from './../../../services/event-bus-service.js'
 import mailList from '../cmps/mail-list.cmp.js';
 import mailFilter from './../cmps/mail-filter.cmp.js';
+// import mailSort from './../cmps/mail-sort.cmp.js';
 import percentageBar from './../cmps/percentage-bar.cmp.js'
 // import mailDetails from './mail-details.js';
 
@@ -9,7 +10,8 @@ import percentageBar from './../cmps/percentage-bar.cmp.js'
 export default {
     template: `  
         <section class=" mail-app flex-grow flex-grow">
-            <mail-filter @filtered="setFilter"/>  
+            <mail-filter @filtered="setFilter"/>
+            <!-- <mail-sort @sorted="setSort"/>     -->
             <div class="mail-layout">
                 <div class="side-bar">
                     <router-link class="compose" to="/mail/new">
@@ -18,17 +20,16 @@ export default {
                     </router-link>
                     <div class="folders">
                         <ul class="folder-list">
-                            <li class="li" @click="setFilter('inbox')">Inbox</li>
-                            <li class="li">Starred</li>
-                            <li class="li sent" @click="setFilter('sent')">Sent Mails</li>
-                            <li class="li">Drafts</li>
+                            <li class="li" @click="setFilter('inbox')">
+                                <div class="btn-inbox">Inbox</div>
+                            </li>
+                            <!-- <li class="li">Starred</li> -->
+                            <li class="li-sent" @click="setFilter('sent')">
+                                <div class="btn-sent">Sent Mails</div>
+                            </li>
+                            <!-- <li class="li">Drafts</li> -->
                             <li>
                                 <percentage-bar :percBar="showPercentage" v-model="percentage"></percentage-bar>
-                                <!-- <div class="percentage-bar">
-                                    <div v-model="percentage" class="read-percentage">
-                                        {{percentage}}
-                                    </div>
-                                </div> -->
                             </li>
                         </ul>
                     </div>
@@ -41,13 +42,15 @@ export default {
         return {
             mails: null,
             filterBy: null,
+            sortBy:null,
             selectedMail: null,
-            percentage:''
+            percentage:null
         }
     },
     created() {
         this.loadMails();
     },
+
     methods: {
         loadMails() {
             mailService.query()
@@ -76,6 +79,9 @@ export default {
         setFilter(filterBy) {
             this.filterBy = filterBy
         },
+        // setSort(sortBy){
+        //     this.sortBy = sortBy
+        // }
     },
     computed: {
         mailsToShow() {
@@ -100,12 +106,14 @@ export default {
                 .then(result =>{
                     this.percentage = Math.floor(result)
                 })
+                
             return this.percentage
         },
     },
     components: {
         mailList,
         mailFilter,
+        // mailSort,
         percentageBar
         // mailDetails,
     }

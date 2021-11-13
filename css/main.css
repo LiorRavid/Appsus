@@ -51,6 +51,7 @@ a {
     position: fixed;
     height: 8vh;
     background-color: rgb(165, 165, 165);
+    z-index:1;
 }
 
 .app-header-section {
@@ -103,7 +104,7 @@ nav div {
     font-family: lato;
 }
 
-.appsus-menu-list a {}
+/* .appsus-menu-list a {} */
 
 .appsus-menu-list a:hover {
     color: rgb(107, 107, 107);

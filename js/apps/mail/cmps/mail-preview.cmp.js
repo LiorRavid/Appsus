@@ -52,13 +52,13 @@ export default {
         mailDate(){
             const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
             let date = new Date(this.mail.sentAt)
-            if( (Date.now() - date) < 1000 * 60 * 60 * 24){
-                let hour = date.getHours()
-                let minutes = date.getMinutes()
-                if(hour<10) hour = '0' + hour
-                if(minutes<10) minutes = '0' + minutes
-                return hour + ':' + minutes
-            }
+            // if( (Date.now() - date) < 1000 * 60 * 60 * 24){
+            //     let hour = date.getHours()
+            //     let minutes = date.getMinutes()
+            //     if(hour<10) hour = '0' + hour
+            //     if(minutes<10) minutes = '0' + minutes
+            //     return hour + ':' + minutes
+            // }
             return monthNames[date.getMonth()] + ' ' + date.getDate() 
         }
     },

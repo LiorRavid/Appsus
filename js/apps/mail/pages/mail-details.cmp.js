@@ -5,16 +5,18 @@ export default {
         <section v-if="mail" class="mail-details mail-layout mail-app">
             <div class="mail-layout">
                     <div class="side-bar">
-                        <div class="compose">
+                        <router-link class="compose" to="/mail/new">
                             <div class="btn-compose"></div>
                             &nbsp;Compose
-                        </div>
+                        </router-link>
                         <div class="folders">
                             <ul class="folder-list">
-                                <li>Inbox</li>
-                                <li>Starred</li>
-                                <li>Sent Mails</li>
-                                <li>Drafts</li>
+                                <li class="li" >
+                                    <router-link class="btn-inbox" to="/mail">Inbox</router-link>
+                                </li>
+                                <li class="li-sent">
+                                    <router-link class="btn-sent" to="/mail">Sent Mails</router-link>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -25,6 +27,7 @@ export default {
                         </div>
                         <div class = 'btns-details'>
                             <div class="btn-back" @click.stop="backToMails"></div>
+                            <div class="btn-Keep"></div>
                             <div class="btn-trash" @click.stop="removeMail(mail.id)"></div>
                         </div>
                     </header>
