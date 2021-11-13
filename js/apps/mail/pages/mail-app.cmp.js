@@ -10,10 +10,13 @@ import percentageBar from './../cmps/percentage-bar.cmp.js'
 export default {
     template: `  
         <section class=" mail-app flex-grow flex-grow">
-            <mail-filter @filtered="setFilter"/>
+            <div class="flex">
+                <!-- <button class="btn-Hamnurger" @click="toggleMenu">☰</button> -->
+                <mail-filter @filtered="setFilter"/>
+            </div>
             <!-- <mail-sort @sorted="setSort"/>     -->
             <div class="mail-layout">
-                <div class="side-bar">
+                <div v-if="showMenu" class="side-bar">
                     <router-link class="compose" to="/mail/new">
                         <div class="btn-compose"></div>
                         &nbsp;Compose
@@ -46,7 +49,8 @@ export default {
             filterBy: null,
             sortBy:null,
             selectedMail: null,
-            percentage:null
+            percentage:null,
+            showMenu:true
         }
     },
     created() {
@@ -84,6 +88,9 @@ export default {
         // setSort(sortBy){
         //     this.sortBy = sortBy
         // }
+        toggleMenu(){
+            this.showMenu = !this.showMenu
+        },
     },
     computed: {
         mailsToShow() {
