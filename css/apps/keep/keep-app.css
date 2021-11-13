@@ -465,4 +465,7 @@ textarea {
     .btn-add-todo {
         display: block;
     }
+    .keep-app {
+        margin-bottom: 80px;
+    }
 }
