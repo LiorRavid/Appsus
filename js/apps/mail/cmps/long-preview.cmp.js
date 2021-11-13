@@ -35,7 +35,7 @@ export default {
     computed: {
         descriptionText() {
             var text = this.mail.body
-            return text.slice(0,5) + "..." 
+            return text.slice(0,100) + "..." 
         },
         nameOfMailSend(){
             const name = this.mail.from.split('@')

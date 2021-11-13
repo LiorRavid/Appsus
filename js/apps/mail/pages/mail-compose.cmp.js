@@ -4,17 +4,19 @@ export default {
     template: `
        <section class=" mail-app mail-details mail-layout mail-app">
             <div class="mail-layout">
-                    <div class="side-bar">
-                        <div class="compose">
+                <div class="side-bar">
+                        <router-link class="compose" to="/mail/new">
                             <div class="btn-compose"></div>
                             &nbsp;Compose
-                        </div>
+                        </router-link>
                         <div class="folders">
                             <ul class="folder-list">
-                                <li>Inbox</li>
-                                <li>Starred</li>
-                                <li>Sent Mails</li>
-                                <li>Drafts</li>
+                                <li class="li">
+                                    <router-link class="btn-inbox" to="/mail">Inbox</router-link>
+                                </li>
+                                <li class="li-sent">
+                                    <router-link class="btn-sent" to="/mail">Sent Mails</router-link>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -64,5 +66,5 @@ export default {
                 mailService.save(newMail)
                 .then(()=>this.$router.push('/mail'))
             },
-        }
+        },
 };

@@ -31,12 +31,32 @@
 }
 .btn-compose{
     font-family: fa;
-
 }
 
 .btn-compose::before{
     content: '\f067'
 }
+
+.compose:hover{
+    box-shadow: 0px 0px 7px .5px rgba(82, 82, 82, 0.66);
+}
+
+.btn-inbox{
+    font-family: fa;
+}
+
+.btn-inbox::before{
+    content: '\f01c'
+}
+
+.btn-sent{
+    font-family: fa;
+}
+
+.btn-sent::before{
+    content: '\f14d'
+}
+
 
 .folders{
     /* background-color: lightskyblue; */
@@ -47,13 +67,36 @@
 
 .folder-list{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
     align-items: center;
     list-style: none;
     margin: 0;
     width: 100%;
     padding: 0;
+    padding-top:10px;
+}
+
+.folder-list li{
+    padding-top:5px;
+}
+
+.btn-inbox:hover{
+    cursor: pointer;
+    background-color:lightpink;
+    border-top-right-radius: 30px ;
+    border-bottom-right-radius: 30px ;
+    width: 100px;
+    text-align: center;
+}
+
+.btn-sent:hover{
+    cursor: pointer;
+    background-color: lightskyblue;
+    border-top-right-radius: 30px ;
+    border-bottom-right-radius: 30px ;
+    width: 100px;
+    text-align: center;
 }
 
 /* .li.sent{
@@ -71,15 +114,15 @@
 
 .read-percentage{
     height: 100%;
-    width: 0;
+    /* width: 0; */
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(to left, #F2709C, #FF9472);
     box-shadow: 0 3PX 3PX -5PX #F2709C, 0 2PX 5PX #FF9472 ;
-    /* opacity: 0; */
+    opacity: 1;
     border-radius: 20px;
-    /* transition:1s ease 0.3s; */
+    transition:1s ease 0.3s;
 }
 
 
@@ -171,6 +214,14 @@
 
 .btn-back::before {
     content: '\f0a8';
+}
+
+.btn-Keep{
+    font-family: fa; 
+}
+
+.btn-Keep::before{
+    content: '\f1d8';
 }
 
 /* preview-header */
@@ -280,20 +331,44 @@
 }
 
 /* MAIL FILTER */
-.mail-filter{
+/* .mail-filter{
     margin: 0;
     padding: 0;
     position: absolute;
     top:15px;
     left:600px;
     display: flex;
+    z-index: 2;
+} */
+.mail-filter .box {
+    position: absolute;
+    margin-top:10px;
+    padding: 5px;
+    padding-right: 8px;
+    padding-left: 8px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    /* border: 1px solid lightgray; */
+    box-shadow: 0px 0px 7px .5px rgba(82, 82, 82, 0.66);
+    background-color: whitesmoke;
+    z-index: 2;
+    top:5px;
+}
+
+.mail-filter input {
+    width: 200px;
+    line-height: 2rem;
+    border: none;
 }
 
 .btn-search{
+    margin:0;
+    padding: 0;
     font-family: fa;
     position: absolute;
-    right: 90px;
-    top:3px
+    right: 92px;
+    bottom:12px;
 }
 
 .btn-search::before{
