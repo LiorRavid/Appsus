@@ -5,7 +5,8 @@ export default {
         <section class="note-list">
         <ul class="note-list-ul clean-list ">
             <li  v-for="note in notes" :class="{'pinned-notes':note.isPinned}" :key="note.id" class="note-preview-container" :style="{'background-color':note.style['background-color']}" >
-                <button :class="{'show-btn':note.isPinned}" class="btn-note-pin btn-note" @click="checkPinnedNote(note.isPinned,note.id)"></button>
+                <button :class="{'show-btn':note.isPinned}" class="btn-note-pin btn-note" ></button>
+                <!-- @click="checkPinnedNote(note.isPinned,note.id)" -->
                 <note-preview :note="note"  ></note-preview>
                 <section class="flex">
                     <button class="btn-note-delete btn-note"@click="remove(note.id) " ></button>
